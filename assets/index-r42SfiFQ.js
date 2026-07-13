@@ -1,11 +1,11 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=JSON.parse(localStorage.getItem(`photos`))||[],t=JSON.parse(localStorage.getItem(`favorites`))||[],n=JSON.parse(localStorage.getItem(`albums`))||[`Trio Edamame`,`Kenangan`,`Edamamers`];document.querySelector(`#app`).innerHTML=`
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=`/album-trio-edamame/`,t=JSON.parse(localStorage.getItem(`photos`))||[],n=JSON.parse(localStorage.getItem(`favorites`))||[],r=JSON.parse(localStorage.getItem(`albums`))||[`Trio Edamame`,`Kenangan`,`Edamamers`];document.querySelector(`#app`).innerHTML=`
 <div class="container">
 
   <!-- Sidebar -->
   <aside class="sidebar">
 
     <div class="logo">
-      <img src="/logo.png" class="logo-img" alt="Logo">
+      <img src="${e}logo.png" class="logo-img" alt="Logo">
       <h2>Edamamers</h2>
       <span>Gallery</span>
     </div>
@@ -22,7 +22,7 @@
     </ul>
 
     <div class="sidebar-footer">
-      <img src="/footer.png" alt="Footer">
+      <img src="${e}footer.png" alt="Footer">
       <p>
         Simpan, kelola, dan bagikan setiap momen terbaik bersama
         <b>Trio Edamame!</b> 💚
@@ -83,7 +83,7 @@
         </div>
 
         <div class="hero-image">
-          <img src="/Hero.png" alt="Hero">
+          <img src="${e}Hero.png" alt="Hero">
         </div>
 
       </div>
@@ -191,7 +191,7 @@
   </main>
 
 </div>
-`,document.getElementById(`dashboard`).addEventListener(`click`,()=>{m(),document.getElementById(`content`).innerHTML=`
+`,document.getElementById(`dashboard`).addEventListener(`click`,()=>{h(),document.getElementById(`content`).innerHTML=`
 
     <!-- Hero -->
     <div class="hero">
@@ -206,7 +206,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="/Hero.png" alt="Hero">
+            <img src="${e}Hero.png" alt="Hero">
         </div>
 
     </div>
@@ -286,7 +286,7 @@
 
     </section>
 
-    `,f(),d(),p(),l(),r()}),document.getElementById(`album`).addEventListener(`click`,()=>{m();let n=[...new Set(e.map(e=>e.album))],r=`
+    `,p(),f(),m(),u(),i()}),document.getElementById(`album`).addEventListener(`click`,()=>{h();let e=[...new Set(t.map(e=>e.album))],r=`
     <section class="album-page">
 
         <h1>📁 Album Edamamers</h1>
@@ -294,13 +294,13 @@
         <p>Pilih album untuk melihat koleksi foto.</p>
 
         <div class="album-grid">
-    `;n.length===0?r+=`<p>Belum ada album.</p>`:n.forEach(t=>{let n=e.filter(e=>e.album===t).length,i=e.find(e=>e.album===t)?.src||`/foto1.png`;r+=`
+    `;e.length===0?r+=`<p>Belum ada album.</p>`:e.forEach(e=>{let n=t.filter(t=>t.album===e).length,i=t.find(t=>t.album===e)?.src||`/album-trio-edamame/foto1.png`;r+=`
     <div class="album-card"
-         data-album="${t}">
+         data-album="${e}">
 
-        <img src="${i}" alt="${t}">
+        <img src="${i}" alt="${e}">
 
-        <h3>${t}</h3>
+        <h3>${e}</h3>
 
         <p class="jumlah-foto">${n} Foto</p>
 
@@ -308,7 +308,7 @@
     `}),r+=`
         </div>
     </section>
-    `,document.getElementById(`content`).innerHTML=r,document.addEventListener(`click`,function(n){let r=n.target.closest(`.album-card`);if(!r)return;let i=r.dataset.album,a=e.filter(e=>e.album===i),o=`
+    `,document.getElementById(`content`).innerHTML=r,document.addEventListener(`click`,function(e){let r=e.target.closest(`.album-card`);if(!r)return;let i=r.dataset.album,a=t.filter(e=>e.album===i),o=`
     <section class="gallery-page">
 
         <button id="backAlbum">← Kembali</button>
@@ -324,7 +324,7 @@
                 <div class="gallery-action">
 
                     <button class="fav-btn">
-                        ${t.includes(e.src)?`❤️`:`🤍`}
+                        ${n.includes(e.src)?`❤️`:`🤍`}
                     </button>
 
                     <button class="delete-btn">
@@ -337,7 +337,7 @@
             `}),o+=`
         </div>
     </section>
-    `,document.getElementById(`content`).innerHTML=o,document.getElementById(`backAlbum`).onclick=()=>{document.getElementById(`album`).click()}})}),document.getElementById(`gallery`).addEventListener(`click`,()=>{m();let n=`
+    `,document.getElementById(`content`).innerHTML=o,document.getElementById(`backAlbum`).onclick=()=>{document.getElementById(`album`).click()}})}),document.getElementById(`gallery`).addEventListener(`click`,()=>{h();let e=`
     <section class="gallery-page">
 
         <h1>🖼 Edamamers Gallery</h1>
@@ -345,17 +345,17 @@
         <p>Koleksi foto terbaik Trio Edamame.</p>
 
         <div class="gallery-grid">
-    `;e.forEach(e=>{n+=`
+    `;t.forEach(t=>{e+=`
             <div class="gallery-item"
-                 data-name="${e.name}"
-                 data-album="${e.album}">
+                 data-name="${t.name}"
+                 data-album="${t.album}">
 
-                <img src="${e.src}" alt="${e.name}">
+                <img src="${t.src}" alt="${t.name}">
 
                 <div class="gallery-action">
 
                     <button class="fav-btn">
-                        ${t.includes(e.src)?`❤️`:`🤍`}
+                        ${n.includes(t.src)?`❤️`:`🤍`}
                     </button>
 
                     <button class="delete-btn">
@@ -365,28 +365,28 @@
                 </div>
 
             </div>
-        `}),n+=`
+        `}),e+=`
         </div>
     </section>
-    `,document.getElementById(`content`).innerHTML=n}),document.getElementById(`upload`).addEventListener(`click`,()=>{m();let e=document.querySelector(`.upload`);e?e.scrollIntoView({behavior:`smooth`}):(document.getElementById(`dashboard`).click(),setTimeout(()=>{document.querySelector(`.upload`).scrollIntoView({behavior:`smooth`})},100))}),document.getElementById(`favorite`).addEventListener(`click`,()=>{m();let n=`
+    `,document.getElementById(`content`).innerHTML=e}),document.getElementById(`upload`).addEventListener(`click`,()=>{h();let e=document.querySelector(`.upload`);e?e.scrollIntoView({behavior:`smooth`}):(document.getElementById(`dashboard`).click(),setTimeout(()=>{document.querySelector(`.upload`).scrollIntoView({behavior:`smooth`})},100))}),document.getElementById(`favorite`).addEventListener(`click`,()=>{h();let e=`
     <section class="favorite-page">
 
     <h1>❤️ Foto Favorit</h1>
 
     <div class="favorite-grid">
-    `;t.length==0?n+=`<p class="empty-favorite">
+    `;n.length==0?e+=`<p class="empty-favorite">
         Belum ada foto favorit.
-        </p>`:t.filter(t=>e.some(e=>e.src===t)).forEach(e=>{e&&(n+=`
+        </p>`:n.filter(e=>t.some(t=>t.src===e)).forEach(t=>{t&&(e+=`
         <div class="gallery-item">
-            <img src="${e}">
+            <img src="${t}">
         </div>
-    `)}),n+=`</div></section>`,document.getElementById(`content`).innerHTML=n}),document.getElementById(`profile`).addEventListener(`click`,()=>{m(),document.getElementById(`content`).innerHTML=`
+    `)}),e+=`</div></section>`,document.getElementById(`content`).innerHTML=e}),document.getElementById(`profile`).addEventListener(`click`,()=>{h(),document.getElementById(`content`).innerHTML=`
 
   <section class="profile-page">
 
   <div class="profile-card">
 
-  <img src="${localStorage.getItem(`profilePhoto`)||`/profile.png`}" id="profilePreview" class="profile-photo">
+  <img src="${localStorage.getItem(`profilePhoto`)||`/album-trio-edamame/profile.png`}" id="profilePreview" class="profile-photo">
 
   <h2 id="profileName">
   ${localStorage.getItem(`profileName`)||`Edamamers`}
@@ -411,7 +411,7 @@
 
   </section>
 
-  `,document.getElementById(`saveProfile`).addEventListener(`click`,()=>{let e=document.getElementById(`newName`).value,t=document.getElementById(`newPhoto`).files[0];if(e!=``&&(localStorage.setItem(`profileName`,e),document.getElementById(`profileName`).innerHTML=e,document.getElementById(`navbarUser`).innerHTML=`👤 Halo, `+e+`!`),t){let e=new FileReader;e.onload=function(e){localStorage.setItem(`profilePhoto`,e.target.result),f(),d(),l(),document.getElementById(`gallery`).click()},e.readAsDataURL(t)}alert(`Profil berhasil disimpan!`)})}),document.getElementById(`setting`).addEventListener(`click`,()=>{m(),document.getElementById(`content`).innerHTML=`
+  `,document.getElementById(`saveProfile`).addEventListener(`click`,()=>{let e=document.getElementById(`newName`).value,t=document.getElementById(`newPhoto`).files[0];if(e!=``&&(localStorage.setItem(`profileName`,e),document.getElementById(`profileName`).innerHTML=e,document.getElementById(`navbarUser`).innerHTML=`👤 Halo, `+e+`!`),t){let e=new FileReader;e.onload=function(e){localStorage.setItem(`profilePhoto`,e.target.result),p(),f(),u(),document.getElementById(`gallery`).click()},e.readAsDataURL(t)}alert(`Profil berhasil disimpan!`)})}),document.getElementById(`setting`).addEventListener(`click`,()=>{h(),document.getElementById(`content`).innerHTML=`
 
     <section class="setting-page">
 
@@ -429,7 +429,7 @@
 
     </section>
 
-    `;let e=document.getElementById(`themeBtn`);localStorage.getItem(`theme`)===`dark`&&(e.innerHTML=`☀ Light Mode`),e.addEventListener(`click`,c)}),document.getElementById(`about`).addEventListener(`click`,()=>{m(),document.getElementById(`content`).innerHTML=`
+    `;let e=document.getElementById(`themeBtn`);localStorage.getItem(`theme`)===`dark`&&(e.innerHTML=`☀ Light Mode`),e.addEventListener(`click`,l)}),document.getElementById(`about`).addEventListener(`click`,()=>{h(),document.getElementById(`content`).innerHTML=`
 
     <section class="about-page">
 
@@ -471,17 +471,17 @@
 
     </section>
 
-    `});function r(){let t=document.getElementById(`uploadBtn`),r=document.getElementById(`uploadFile`);document.getElementById(`galleryGrid`);let i=document.getElementById(`albumSelect`);t&&(i.innerHTML=``,n.forEach(e=>{i.innerHTML+=`
+    `});function i(){let e=document.getElementById(`uploadBtn`),n=document.getElementById(`uploadFile`);document.getElementById(`galleryGrid`);let i=document.getElementById(`albumSelect`);e&&(i.innerHTML=``,r.forEach(e=>{i.innerHTML+=`
             <option value="${e}">
                 ${e}
             </option>
-        `}),t.onclick=()=>{let t=r.files[0];if(!t){alert(`Silakan pilih foto!`);return}let n=new FileReader;n.onload=function(n){e.push({src:n.target.result,album:i.value,name:t.name}),localStorage.setItem(`photos`,JSON.stringify(e)),p(),f(),d(),l(),u(),alert(`Foto berhasil diupload!`)},n.readAsDataURL(t)})}document.addEventListener(`click`,e=>{if(e.target.id===`heroBtn`||e.target.textContent===`Jelajahi Galeri`){let e=document.querySelector(`.gallery`);e&&e.scrollIntoView({behavior:`smooth`})}}),document.getElementById(`addAlbum`).addEventListener(`click`,()=>{let e=document.getElementById(`albumName`).value.trim();if(e===``){alert(`Masukkan nama album!`);return}if(n.includes(e)){alert(`Album sudah ada!`);return}n.push(e),localStorage.setItem(`albums`,JSON.stringify(n)),document.getElementById(`albumName`).value=``,f(),d(),l()}),document.addEventListener(`click`,function(n){if(n.target.classList.contains(`fav-btn`)){let e=n.target.closest(`.gallery-item`).querySelector(`img`).src;n.target.textContent==`🤍`?(n.target.textContent=`❤️`,t.includes(e)||t.push(e)):(n.target.textContent=`🤍`,t=t.filter(t=>t!==e)),localStorage.setItem(`favorites`,JSON.stringify(t)),l()}if(n.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=n.target.closest(`.gallery-item`),i=r.querySelector(`img`).src;t=t.filter(e=>e!==i),e=e.filter(e=>e.src!==i),localStorage.setItem(`favorites`,JSON.stringify(t)),localStorage.setItem(`photos`,JSON.stringify(e)),r.remove(),f(),d(),l(),document.getElementById(`favorite`).classList.contains(`active`)&&document.getElementById(`favorite`).click(),document.getElementById(`gallery`).classList.contains(`active`)&&document.getElementById(`gallery`).click()}});var i=document.getElementById(`preview`),a=document.getElementById(`previewImage`),o=document.getElementById(`closePreview`);document.addEventListener(`click`,e=>{e.target.tagName===`IMG`&&e.target.closest(`.gallery-item`)&&(i.style.display=`flex`,a.src=e.target.src)}),o.addEventListener(`click`,()=>{i.style.display=`none`});var s=document.getElementById(`searchInput`);s.addEventListener(`keyup`,()=>{let e=s.value.toLowerCase();document.querySelectorAll(`.album-card`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`}),document.querySelectorAll(`.gallery-item`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`})}),e.forEach(e=>{if(!e.src)return;let n=document.createElement(`div`);n.className=`gallery-item`,n.dataset.name=e.name,n.dataset.album=e.album,n.innerHTML=`
+        `}),e.onclick=()=>{let e=n.files[0];if(!e){alert(`Silakan pilih foto!`);return}let r=new FileReader;r.onload=function(n){t.push({src:n.target.result,album:i.value,name:e.name}),localStorage.setItem(`photos`,JSON.stringify(t)),m(),p(),f(),u(),d(),alert(`Foto berhasil diupload!`)},r.readAsDataURL(e)})}document.addEventListener(`click`,e=>{if(e.target.id===`heroBtn`||e.target.textContent===`Jelajahi Galeri`){let e=document.querySelector(`.gallery`);e&&e.scrollIntoView({behavior:`smooth`})}}),document.getElementById(`addAlbum`).addEventListener(`click`,()=>{let e=document.getElementById(`albumName`).value.trim();if(e===``){alert(`Masukkan nama album!`);return}if(r.includes(e)){alert(`Album sudah ada!`);return}r.push(e),localStorage.setItem(`albums`,JSON.stringify(r)),document.getElementById(`albumName`).value=``,p(),f(),u()}),document.addEventListener(`click`,function(e){if(e.target.classList.contains(`fav-btn`)){let t=e.target.closest(`.gallery-item`).querySelector(`img`).src;e.target.textContent==`🤍`?(e.target.textContent=`❤️`,n.includes(t)||n.push(t)):(e.target.textContent=`🤍`,n=n.filter(e=>e!==t)),localStorage.setItem(`favorites`,JSON.stringify(n)),u()}if(e.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=e.target.closest(`.gallery-item`),i=r.querySelector(`img`).src;n=n.filter(e=>e!==i),t=t.filter(e=>e.src!==i),localStorage.setItem(`favorites`,JSON.stringify(n)),localStorage.setItem(`photos`,JSON.stringify(t)),r.remove(),p(),f(),u(),document.getElementById(`favorite`).classList.contains(`active`)&&document.getElementById(`favorite`).click(),document.getElementById(`gallery`).classList.contains(`active`)&&document.getElementById(`gallery`).click()}});var a=document.getElementById(`preview`),o=document.getElementById(`previewImage`),s=document.getElementById(`closePreview`);document.addEventListener(`click`,e=>{e.target.tagName===`IMG`&&e.target.closest(`.gallery-item`)&&(a.style.display=`flex`,o.src=e.target.src)}),s.addEventListener(`click`,()=>{a.style.display=`none`});var c=document.getElementById(`searchInput`);c.addEventListener(`keyup`,()=>{let e=c.value.toLowerCase();document.querySelectorAll(`.album-card`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`}),document.querySelectorAll(`.gallery-item`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`})}),t.forEach(e=>{if(!e.src)return;let t=document.createElement(`div`);t.className=`gallery-item`,t.dataset.name=e.name,t.dataset.album=e.album,t.innerHTML=`
         <img src="${e.src}" alt="${e.name}">
 
         <div class="gallery-action">
 
             <button class="fav-btn">
-                ${t.includes(e.src)?`❤️`:`🤍`}
+                ${n.includes(e.src)?`❤️`:`🤍`}
             </button>
 
             <button class="delete-btn">
@@ -489,11 +489,11 @@
             </button>
 
         </div>
-    `,galleryGrid.appendChild(n)}),document.addEventListener(`click`,e=>{let t=e.target.closest(`.album-card`);if(!t)return;let n=t.dataset.album;document.querySelectorAll(`.gallery-item`).forEach(e=>{e.dataset.album===n?e.style.display=`block`:e.style.display=`none`}),document.querySelector(`.gallery`).scrollIntoView({behavior:`smooth`})}),document.getElementById(`showAll`).addEventListener(`click`,()=>{document.querySelectorAll(`.gallery-item`).forEach(e=>{e.style.display=`block`})});function c(){document.body.classList.toggle(`dark`);let e=document.getElementById(`themeBtn`);document.body.classList.contains(`dark`)?(localStorage.setItem(`theme`,`dark`),e.innerHTML=`☀ Light Mode`):(localStorage.setItem(`theme`,`light`),e.innerHTML=`🌙 Aktifkan Dark Mode`)}localStorage.getItem(`theme`)===`dark`&&document.body.classList.add(`dark`);function l(){let n=document.querySelectorAll(`.gallery-item`).length,r=document.querySelectorAll(`.album-card`).length,i=t.length,a=e.length;document.getElementById(`totalPhoto`).textContent=n,document.getElementById(`totalAlbum`).textContent=r,document.getElementById(`totalFavorite`).textContent=i,document.getElementById(`totalUpload`).textContent=a}function u(){document.querySelectorAll(`.album-card`).forEach(t=>{let n=t.dataset.album,r=e.filter(e=>e.album===n).length,i=t.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function d(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,n.forEach(t=>{e.innerHTML+=`
+    `,galleryGrid.appendChild(t)}),document.addEventListener(`click`,e=>{let t=e.target.closest(`.album-card`);if(!t)return;let n=t.dataset.album;document.querySelectorAll(`.gallery-item`).forEach(e=>{e.dataset.album===n?e.style.display=`block`:e.style.display=`none`}),document.querySelector(`.gallery`).scrollIntoView({behavior:`smooth`})}),document.getElementById(`showAll`).addEventListener(`click`,()=>{document.querySelectorAll(`.gallery-item`).forEach(e=>{e.style.display=`block`})});function l(){document.body.classList.toggle(`dark`);let e=document.getElementById(`themeBtn`);document.body.classList.contains(`dark`)?(localStorage.setItem(`theme`,`dark`),e.innerHTML=`☀ Light Mode`):(localStorage.setItem(`theme`,`light`),e.innerHTML=`🌙 Aktifkan Dark Mode`)}localStorage.getItem(`theme`)===`dark`&&document.body.classList.add(`dark`);function u(){let e=document.querySelectorAll(`.gallery-item`).length,r=document.querySelectorAll(`.album-card`).length,i=n.length,a=t.length;document.getElementById(`totalPhoto`).textContent=e,document.getElementById(`totalAlbum`).textContent=r,document.getElementById(`totalFavorite`).textContent=i,document.getElementById(`totalUpload`).textContent=a}function d(){document.querySelectorAll(`.album-card`).forEach(e=>{let n=e.dataset.album,r=t.filter(e=>e.album===n).length,i=e.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function f(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,r.forEach(t=>{e.innerHTML+=`
         <option value="${t}">
             ${t}
         </option>
-        `}))}function f(){let t=document.getElementById(`albumGrid`);t&&(t.innerHTML=``,n.forEach(n=>{let r=e.filter(e=>e.album===n).length,i=e.find(e=>e.album===n)?.src||`/foto1.png`;t.innerHTML+=`
+        `}))}function p(){let e=document.getElementById(`albumGrid`);e&&(e.innerHTML=``,r.forEach(n=>{let r=t.filter(e=>e.album===n).length,i=t.find(e=>e.album===n)?.src||`/album-trio-edamame/foto1.png`;e.innerHTML+=`
         <div class="album-card"
              data-name="${n}"
              data-album="${n}">
@@ -505,12 +505,12 @@
             <p class="jumlah-foto">${r} Foto</p>
 
         </div>
-        `}))}function p(){let n=document.getElementById(`galleryGrid`);n&&(n.innerHTML=``,e.forEach(e=>{let r=t.includes(e.src);n.innerHTML+=`
+        `}))}function m(){let e=document.getElementById(`galleryGrid`);e&&(e.innerHTML=``,t.forEach(t=>{let r=n.includes(t.src);e.innerHTML+=`
         <div class="gallery-item"
-             data-name="${e.name}"
-             data-album="${e.album}">
+             data-name="${t.name}"
+             data-album="${t.album}">
 
-            <img src="${e.src}" alt="${e.name}">
+            <img src="${t.src}" alt="${t.name}">
 
             <div class="gallery-action">
 
@@ -525,4 +525,4 @@
             </div>
 
         </div>
-        `}))}function m(){window.innerWidth<=768&&document.querySelector(`.sidebar`).classList.remove(`show`)}f(),d(),p(),l(),u();var h=document.getElementById(`menuBtn`),g=document.querySelector(`.sidebar`);h.addEventListener(`click`,()=>{g.classList.toggle(`show`)});
+        `}))}function h(){window.innerWidth<=768&&document.querySelector(`.sidebar`).classList.remove(`show`)}p(),f(),m(),u(),d();var g=document.getElementById(`menuBtn`),_=document.querySelector(`.sidebar`);g.addEventListener(`click`,()=>{_.classList.toggle(`show`)});
