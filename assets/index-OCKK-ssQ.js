@@ -53,7 +53,7 @@
         <div class="navbar-right">
 
             <img
-                src="${localStorage.getItem(`profilePhoto`)||`/profile.png`}"
+                src="${localStorage.getItem(`profilePhoto`)||`/album-trio-edamame/profile.png`}"
                 class="navbar-photo">
 
             <div
@@ -386,7 +386,9 @@
 
   <div class="profile-card">
 
-  <img src="${localStorage.getItem(`profilePhoto`)||`/album-trio-edamame/profile.png`}" id="profilePreview" class="profile-photo">
+  <img src="${localStorage.getItem(`profilePhoto`)||`/album-trio-edamame/profile.png`}" 
+  id="profilePreview" 
+  class="profile-photo">
 
   <h2 id="profileName">
   ${localStorage.getItem(`profileName`)||`Edamamers`}
