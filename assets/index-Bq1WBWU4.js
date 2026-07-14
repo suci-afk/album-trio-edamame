@@ -524,4 +524,4 @@
             </div>
 
         </div>
-        `}))}function g(){window.innerWidth<=768&&(v.classList.remove(`show`),y.classList.remove(`show`))}m(),p(),h(),d(),f(),i();var _=document.getElementById(`menuBtn`),v=document.querySelector(`.sidebar`),y=document.getElementById(`overlay`);_.onclick=()=>{v.classList.add(`show`),y.classList.add(`show`)},y.onclick=()=>{v.classList.remove(`show`),y.classList.remove(`show`)};
+        `}))}function g(){if(window.innerWidth<=768){v.classList.remove(`show`);let e=document.getElementById(`overlay`);e&&e.classList.remove(`show`)}}m(),p(),h(),d(),f(),i();var _=document.getElementById(`menuBtn`),v=document.querySelector(`.sidebar`),y=document.getElementById(`overlay`);_.onclick=()=>{v.classList.add(`show`),y.classList.add(`show`)},y.onclick=()=>{v.classList.remove(`show`),y.classList.remove(`show`)};
