@@ -9,7 +9,10 @@ let albums = JSON.parse(localStorage.getItem("albums")) || [
 ];
 
 document.querySelector('#app').innerHTML = `
+
 <div class="container">
+
+  <div id="overlay"></div>
 
   <!-- Sidebar -->
   <aside class="sidebar">
@@ -1239,14 +1242,15 @@ function showToast(text){
 
     },2500);
 }
-function closeSidebar(){
+function closeSidebar() {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.remove("show");
 
-    if(window.innerWidth <= 768){
-
-        document.querySelector(".sidebar").classList.remove("show");
-
+        const overlay = document.getElementById("overlay");
+        if (overlay) {
+            overlay.classList.remove("show");
+        }
     }
-
 }
 loadAlbums();
 loadAlbumSelect();
@@ -1257,9 +1261,14 @@ initUpload();
 
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.querySelector(".sidebar");
+const overlay = document.getElementById("overlay");
 
-menuBtn.addEventListener("click",()=>{
+menuBtn.onclick = () => {
+    sidebar.classList.add("show");
+    overlay.classList.add("show");
+};
 
-    sidebar.classList.toggle("show");
-
-});
+overlay.onclick = () => {
+    sidebar.classList.remove("show");
+    overlay.classList.remove("show");
+};
