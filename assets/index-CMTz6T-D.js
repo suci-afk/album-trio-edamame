@@ -196,7 +196,7 @@
   </main>
 
 </div>
-`,document.getElementById(`dashboard`).addEventListener(`click`,()=>{x(),i()}),document.getElementById(`album`).addEventListener(`click`,()=>{x();let e=r,i=`
+`,document.getElementById(`dashboard`).addEventListener(`click`,()=>{S(),i()}),document.getElementById(`album`).addEventListener(`click`,()=>{S();let e=r,i=`
     <section class="album-page">
 
         <h1>📁 Album Edamamers</h1>
@@ -247,7 +247,7 @@
             `}),o+=`
         </div>
     </section>
-    `,document.getElementById(`content`).innerHTML=o,document.getElementById(`backAlbum`).onclick=()=>{document.getElementById(`album`).click()}})}),document.getElementById(`gallery`).addEventListener(`click`,()=>{x();let e=`
+    `,document.getElementById(`content`).innerHTML=o,document.getElementById(`backAlbum`).onclick=()=>{document.getElementById(`album`).click()}})}),document.getElementById(`gallery`).addEventListener(`click`,()=>{S();let e=`
     <section class="gallery-page">
 
         <h1>🖼 Edamamers Gallery</h1>
@@ -278,7 +278,7 @@
         `}),e+=`
         </div>
     </section>
-    `,document.getElementById(`content`).innerHTML=e}),document.getElementById(`upload`).addEventListener(`click`,()=>{x();let e=document.querySelector(`.upload`);e?e.scrollIntoView({behavior:`smooth`}):(document.getElementById(`dashboard`).click(),setTimeout(()=>{document.querySelector(`.upload`).scrollIntoView({behavior:`smooth`})},100))}),document.getElementById(`favorite`).addEventListener(`click`,()=>{x();let e=`
+    `,document.getElementById(`content`).innerHTML=e}),document.getElementById(`upload`).addEventListener(`click`,()=>{S();let e=document.querySelector(`.upload`);e?e.scrollIntoView({behavior:`smooth`}):(document.getElementById(`dashboard`).click(),setTimeout(()=>{document.querySelector(`.upload`).scrollIntoView({behavior:`smooth`})},100))}),document.getElementById(`favorite`).addEventListener(`click`,()=>{S();let e=`
     <section class="favorite-page">
 
     <h1>❤️ Foto Favorit</h1>
@@ -290,7 +290,7 @@
         <div class="gallery-item">
             <img src="${t}">
         </div>
-    `)}),e+=`</div></section>`,document.getElementById(`content`).innerHTML=e}),document.getElementById(`profile`).addEventListener(`click`,()=>{x(),document.getElementById(`content`).innerHTML=`
+    `)}),e+=`</div></section>`,document.getElementById(`content`).innerHTML=e}),document.getElementById(`profile`).addEventListener(`click`,()=>{S(),document.getElementById(`content`).innerHTML=`
 
   <section class="profile-page">
 
@@ -323,7 +323,7 @@
 
   </section>
 
-  `,document.getElementById(`saveProfile`).addEventListener(`click`,()=>{let e=document.getElementById(`newName`).value,t=document.getElementById(`newPhoto`).files[0];if(e!=``&&(localStorage.setItem(`profileName`,e),document.getElementById(`profileName`).innerHTML=e,document.getElementById(`navbarUser`).innerHTML=`👤 Halo, `+e+`!`),t){let e=new FileReader;e.onload=function(e){localStorage.setItem(`profilePhoto`,e.target.result),h(),m(),f(),document.getElementById(`gallery`).click()},e.readAsDataURL(t)}alert(`Profil berhasil disimpan!`)})}),document.getElementById(`setting`).addEventListener(`click`,()=>{x(),document.getElementById(`content`).innerHTML=`
+  `,document.getElementById(`saveProfile`).addEventListener(`click`,()=>{let e=document.getElementById(`newName`).value,t=document.getElementById(`newPhoto`).files[0];if(e!=``&&(localStorage.setItem(`profileName`,e),document.getElementById(`profileName`).innerHTML=e,document.getElementById(`navbarUser`).innerHTML=`👤 Halo, `+e+`!`),t){let e=new FileReader;e.onload=function(e){localStorage.setItem(`profilePhoto`,e.target.result),g(),h(),p(),document.getElementById(`gallery`).click()},e.readAsDataURL(t)}v(`Profil berhasil disimpan!`)})}),document.getElementById(`setting`).addEventListener(`click`,()=>{S(),document.getElementById(`content`).innerHTML=`
 
     <section class="setting-page">
 
@@ -341,7 +341,7 @@
 
     </section>
 
-    `;let e=document.getElementById(`themeBtn`);localStorage.getItem(`theme`)===`dark`&&(e.innerHTML=`☀ Light Mode`),e.addEventListener(`click`,d)}),document.getElementById(`about`).addEventListener(`click`,()=>{x(),document.getElementById(`content`).innerHTML=`
+    `;let e=document.getElementById(`themeBtn`);localStorage.getItem(`theme`)===`dark`&&(e.innerHTML=`☀ Light Mode`),e.addEventListener(`click`,f)}),document.getElementById(`about`).addEventListener(`click`,()=>{S(),document.getElementById(`content`).innerHTML=`
 
     <section class="about-page">
 
@@ -476,11 +476,11 @@ Upload
 
 </section>
 
-`,h(),m(),g(),f(),a()}function a(){let e=document.getElementById(`uploadBtn`),n=document.getElementById(`uploadFile`);document.getElementById(`galleryGrid`);let i=document.getElementById(`albumSelect`);e&&(i.innerHTML=``,r.forEach(e=>{i.innerHTML+=`
+`,g(),h(),_(),p(),a(),o()}function a(){let e=document.getElementById(`uploadBtn`),n=document.getElementById(`uploadFile`);document.getElementById(`galleryGrid`);let i=document.getElementById(`albumSelect`);e&&(i.innerHTML=``,r.forEach(e=>{i.innerHTML+=`
             <option value="${e}">
                 ${e}
             </option>
-        `}),e.onclick=()=>{let e=n.files[0];if(!e){alert(`Silakan pilih foto!`);return}let r=new FileReader;r.onload=function(n){t.push({src:n.target.result,album:i.value,name:e.name}),localStorage.setItem(`photos`,JSON.stringify(t)),g(),h(),m(),f(),p(),_(`Foto berhasil diupload!`)},r.readAsDataURL(e)})}document.addEventListener(`click`,e=>{e.target.id===`heroBtn`&&document.getElementById(`gallery`).click()}),document.getElementById(`addAlbum`).addEventListener(`click`,()=>{let e=document.getElementById(`albumName`).value.trim();if(e===``){alert(`Masukkan nama album!`);return}if(r.includes(e)){alert(`Album sudah ada!`);return}r.push(e),localStorage.setItem(`albums`,JSON.stringify(r)),document.getElementById(`albumName`).value=``,h(),m(),f()}),document.addEventListener(`click`,function(e){if(e.target.classList.contains(`fav-btn`)){let t=e.target.closest(`.gallery-item`).querySelector(`img`).src;e.target.textContent==`🤍`?(e.target.textContent=`❤️`,n.includes(t)||n.push(t)):(e.target.textContent=`🤍`,n=n.filter(e=>e!==t)),localStorage.setItem(`favorites`,JSON.stringify(n)),f()}if(e.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=e.target.closest(`.gallery-item`),i=r.querySelector(`img`).src;n=n.filter(e=>e!==i),t=t.filter(e=>e.src!==i),localStorage.setItem(`favorites`,JSON.stringify(n)),localStorage.setItem(`photos`,JSON.stringify(t)),r.remove(),h(),m(),f(),p(),document.getElementById(`favorite`).classList.contains(`active`)&&document.getElementById(`favorite`).click(),document.getElementById(`gallery`).classList.contains(`active`)&&document.getElementById(`gallery`).click()}});var o=document.getElementById(`preview`),s=document.getElementById(`previewImage`),c=document.getElementById(`closePreview`);document.addEventListener(`click`,e=>{e.target.tagName===`IMG`&&e.target.closest(`.gallery-item`)&&(o.style.display=`flex`,s.src=e.target.src)}),c.addEventListener(`click`,()=>{o.style.display=`none`});var l=document.getElementById(`searchInput`);l.addEventListener(`keyup`,()=>{let e=l.value.toLowerCase();document.querySelectorAll(`.album-card`).forEach(t=>{(t.dataset.album||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`}),document.querySelectorAll(`.gallery-item`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`})});var u=document.getElementById(`galleryGrid`);u&&t.forEach(e=>{if(!e.src)return;let t=document.createElement(`div`);t.className=`gallery-item`,t.dataset.name=e.name,t.dataset.album=e.album,t.innerHTML=`
+        `}),e.onclick=()=>{let e=n.files[0];if(!e){v(`Silakan pilih foto!`);return}let r=new FileReader;r.onload=function(n){t.push({src:n.target.result,album:i.value,name:e.name}),localStorage.setItem(`photos`,JSON.stringify(t)),_(),g(),h(),p(),m(),v(`Foto berhasil diupload!`)},r.readAsDataURL(e)})}document.addEventListener(`click`,e=>{e.target.id===`heroBtn`&&document.getElementById(`gallery`).click()});function o(){let e=document.getElementById(`addAlbum`);e&&(e.onclick=()=>{let e=document.getElementById(`albumName`).value.trim();if(e===``){v(`Masukkan nama album!`);return}if(r.includes(e)){v(`Album sudah ada!`);return}r.push(e),localStorage.setItem(`albums`,JSON.stringify(r)),document.getElementById(`albumName`).value=``,g(),h(),p(),m()})}document.addEventListener(`click`,function(e){if(e.target.classList.contains(`fav-btn`)){let t=e.target.closest(`.gallery-item`).querySelector(`img`).src;e.target.textContent==`🤍`?(e.target.textContent=`❤️`,n.includes(t)||n.push(t)):(e.target.textContent=`🤍`,n=n.filter(e=>e!==t)),localStorage.setItem(`favorites`,JSON.stringify(n)),p()}if(e.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=e.target.closest(`.gallery-item`),i=r.querySelector(`img`).src;n=n.filter(e=>e!==i),t=t.filter(e=>e.src!==i),localStorage.setItem(`favorites`,JSON.stringify(n)),localStorage.setItem(`photos`,JSON.stringify(t)),r.remove(),g(),h(),p(),m(),document.getElementById(`favorite`).classList.contains(`active`)&&document.getElementById(`favorite`).click(),document.getElementById(`gallery`).classList.contains(`active`)&&document.getElementById(`gallery`).click()}});var s=document.getElementById(`preview`),c=document.getElementById(`previewImage`),l=document.getElementById(`closePreview`);document.addEventListener(`click`,e=>{e.target.tagName===`IMG`&&e.target.closest(`.gallery-item`)&&(s.style.display=`flex`,c.src=e.target.src)}),l.addEventListener(`click`,()=>{s.style.display=`none`});var u=document.getElementById(`searchInput`);u.addEventListener(`keyup`,()=>{let e=u.value.toLowerCase();document.querySelectorAll(`.album-card`).forEach(t=>{(t.dataset.album||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`}),document.querySelectorAll(`.gallery-item`).forEach(t=>{(t.dataset.name||``).toLowerCase().includes(e)?t.style.display=`block`:t.style.display=`none`})});var d=document.getElementById(`galleryGrid`);d&&t.forEach(e=>{if(!e.src)return;let t=document.createElement(`div`);t.className=`gallery-item`,t.dataset.name=e.name,t.dataset.album=e.album,t.innerHTML=`
             <img src="${e.src}" alt="${e.name}">
             <div class="gallery-action">
                 <button class="fav-btn">
@@ -488,11 +488,11 @@ Upload
                 </button>
                 <button class="delete-btn">🗑️</button>
             </div>
-        `,u.appendChild(t)}),document.addEventListener(`click`,e=>{let t=e.target.closest(`.album-card`);if(!t)return;let n=t.dataset.album;document.querySelectorAll(`.gallery-item`).forEach(e=>{e.dataset.album===n?e.style.display=`block`:e.style.display=`none`}),document.querySelector(`.gallery`).scrollIntoView({behavior:`smooth`})}),document.getElementById(`showAll`).addEventListener(`click`,()=>{document.querySelectorAll(`.gallery-item`).forEach(e=>{e.style.display=`block`})});function d(){document.body.classList.toggle(`dark`);let e=document.getElementById(`themeBtn`);document.body.classList.contains(`dark`)?(localStorage.setItem(`theme`,`dark`),e.innerHTML=`☀ Light Mode`):(localStorage.setItem(`theme`,`light`),e.innerHTML=`🌙 Aktifkan Dark Mode`)}localStorage.getItem(`theme`)===`dark`&&document.body.classList.add(`dark`);function f(){let e=document.getElementById(`totalPhoto`),i=document.getElementById(`totalAlbum`),a=document.getElementById(`totalFavorite`),o=document.getElementById(`totalUpload`);e&&(e.textContent=t.length),i&&(i.textContent=r.length),a&&(a.textContent=n.length),o&&(o.textContent=t.length)}function p(){document.querySelectorAll(`.album-card`).forEach(e=>{let n=e.dataset.album,r=t.filter(e=>e.album===n).length,i=e.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function m(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,r.forEach(t=>{e.innerHTML+=`
+        `,d.appendChild(t)}),document.addEventListener(`click`,e=>{let t=e.target.closest(`.album-card`);if(!t)return;let n=t.dataset.album;document.querySelectorAll(`.gallery-item`).forEach(e=>{e.dataset.album===n?e.style.display=`block`:e.style.display=`none`}),document.querySelector(`.gallery`).scrollIntoView({behavior:`smooth`})}),document.getElementById(`showAll`).addEventListener(`click`,()=>{document.querySelectorAll(`.gallery-item`).forEach(e=>{e.style.display=`block`})});function f(){document.body.classList.toggle(`dark`);let e=document.getElementById(`themeBtn`);document.body.classList.contains(`dark`)?(localStorage.setItem(`theme`,`dark`),e.innerHTML=`☀ Light Mode`):(localStorage.setItem(`theme`,`light`),e.innerHTML=`🌙 Aktifkan Dark Mode`)}localStorage.getItem(`theme`)===`dark`&&document.body.classList.add(`dark`);function p(){let e=document.getElementById(`totalPhoto`),i=document.getElementById(`totalAlbum`),a=document.getElementById(`totalFavorite`),o=document.getElementById(`totalUpload`);e&&(e.textContent=t.length),i&&(i.textContent=r.length),a&&(a.textContent=n.length),o&&(o.textContent=t.length)}function m(){document.querySelectorAll(`.album-card`).forEach(e=>{let n=e.dataset.album,r=t.filter(e=>e.album===n).length,i=e.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function h(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,r.forEach(t=>{e.innerHTML+=`
         <option value="${t}">
             ${t}
         </option>
-        `}))}function h(){let e=document.getElementById(`albumGrid`);e&&(e.innerHTML=``,r.forEach(n=>{let r=t.filter(e=>e.album===n).length,i=t.find(e=>e.album===n)?.src||`/album-trio-edamame/no-image.png`;e.innerHTML+=`
+        `}))}function g(){let e=document.getElementById(`albumGrid`);e&&(e.innerHTML=``,r.forEach(n=>{let r=t.filter(e=>e.album===n).length,i=t.find(e=>e.album===n)?.src||`/album-trio-edamame/no-image.png`;e.innerHTML+=`
         <div class="album-card"
              data-name="${n}"
              data-album="${n}">
@@ -504,17 +504,18 @@ Upload
             <p class="jumlah-foto">${r} Foto</p>
 
         </div>
-        `}))}function g(){let e=document.getElementById(`galleryGrid`);e&&(e.innerHTML=``,t.forEach(t=>{let r=n.includes(t.src),i=document.createElement(`div`);i.className=`gallery-item`,i.dataset.name=t.name,i.dataset.album=t.album,i.innerHTML=`
-<img src="${t.src}" alt="${t.name}">
-<div class="gallery-action">
+        `}))}function _(){let e=document.getElementById(`galleryGrid`);e&&(e.innerHTML=``,t.forEach(t=>{let r=n.includes(t.src),i=document.createElement(`div`);i.className=`gallery-item`,i.dataset.name=t.name,i.dataset.album=t.album,i.innerHTML=`
+        <img src="${t.src}" alt="${t.name}">
 
-<button class="fav-btn">
-${r?`❤️`:`🤍`}
-</button>
+        <div class="gallery-action">
 
-<button class="delete-btn">
-🗑️
-</button>
+            <button class="fav-btn">
+                ${r?`❤️`:`🤍`}
+            </button>
 
-</div>
-`,e.appendChild(i)}))}function _(e){let t=document.getElementById(`toast`);t.textContent=e,t.classList.add(`show`),setTimeout(()=>{t.classList.remove(`show`)},2500)}var v=document.querySelector(`.sidebar`),y=document.getElementById(`overlay`),b=document.getElementById(`menuBtn`);function x(){window.innerWidth<=768&&(v.classList.remove(`show`),y.classList.remove(`show`))}i(),b&&(b.onclick=()=>{v.classList.add(`show`),y.classList.add(`show`)}),y&&(y.onclick=x);
+            <button class="delete-btn">
+                🗑️
+            </button>
+
+        </div>
+    `,e.appendChild(i)}))}function v(e){let t=document.getElementById(`toast`);t.textContent=e,t.classList.add(`show`),setTimeout(()=>{t.classList.remove(`show`)},2500)}var y=document.querySelector(`.sidebar`),b=document.getElementById(`overlay`),x=document.getElementById(`menuBtn`);function S(){window.innerWidth<=768&&(y.classList.remove(`show`),b.classList.remove(`show`))}i(),x&&(x.onclick=()=>{y.classList.add(`show`),b.classList.add(`show`)}),b&&(b.onclick=S);
