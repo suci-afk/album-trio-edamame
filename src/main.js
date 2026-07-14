@@ -1,4 +1,5 @@
 import './style.css'
+const BASE = import.meta.env.BASE_URL;
 let photos = JSON.parse(localStorage.getItem("photos")) || [];
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 let albums = JSON.parse(localStorage.getItem("albums")) || [
@@ -14,7 +15,7 @@ document.querySelector('#app').innerHTML = `
   <aside class="sidebar">
 
     <div class="logo">
-      <img src="/logo.png" class="logo-img" alt="Logo">
+      <img src="${BASE}logo.png" class="logo-img" alt="Logo">
       <h2>Edamamers</h2>
       <span>Gallery</span>
     </div>
@@ -31,7 +32,7 @@ document.querySelector('#app').innerHTML = `
     </ul>
 
     <div class="sidebar-footer">
-      <img src="/footer.png" alt="Footer">
+      <img src="${BASE}footer.png" alt="Footer">
       <p>
         Simpan, kelola, dan bagikan setiap momen terbaik bersama
         <b>Trio Edamame!</b> 💚
@@ -46,6 +47,10 @@ document.querySelector('#app').innerHTML = `
     <!-- Header -->
     <header class="navbar">
 
+    <button id="menuBtn" class="menu-btn">
+    ☰
+    </button>
+
         <div class="navbar-left">
 
             <input
@@ -59,7 +64,7 @@ document.querySelector('#app').innerHTML = `
 
             <img
                 src="${
-                  localStorage.getItem("profilePhoto") || "/profile.png"
+                  localStorage.getItem("profilePhoto") || BASE + "profile.png"
                 }"
                 class="navbar-photo">
 
@@ -90,7 +95,7 @@ document.querySelector('#app').innerHTML = `
         </div>
 
         <div class="hero-image">
-          <img src="/Hero.png" alt="Hero">
+          <img src="${BASE}Hero.png" alt="Hero">
         </div>
 
       </div>
@@ -205,6 +210,8 @@ document.querySelector('#app').innerHTML = `
 
 document.getElementById("dashboard").addEventListener("click", () => {
 
+  closeSidebar();
+
     document.getElementById("content").innerHTML = `
 
     <!-- Hero -->
@@ -220,7 +227,7 @@ document.getElementById("dashboard").addEventListener("click", () => {
         </div>
 
         <div class="hero-image">
-            <img src="/Hero.png" alt="Hero">
+            <img src="${BASE}Hero.png" alt="Hero">
         </div>
 
     </div>
@@ -312,7 +319,9 @@ document.getElementById("dashboard").addEventListener("click", () => {
 
 document.getElementById("album").addEventListener("click", () => {
 
-    const albumList = [...new Set(photos.map(photo => photo.album))];
+    closeSidebar();
+
+   const albumList = albums;
 
     let html = `
     <section class="album-page">
@@ -337,7 +346,7 @@ document.getElementById("album").addEventListener("click", () => {
     ).length;
 
     const cover =
-        photos.find(photo => photo.album === album)?.src || "/foto1.png";
+        photos.find(photo => photo.album === album)?.src || BASE + "foto1.png"
 
     html += `
     <div class="album-card"
@@ -432,6 +441,8 @@ document.getElementById("album").addEventListener("click", () => {
 });
 document.getElementById("gallery").addEventListener("click", () => {
 
+    closeSidebar();
+
     let html = `
     <section class="gallery-page">
 
@@ -481,6 +492,8 @@ document.getElementById("gallery").addEventListener("click", () => {
 });
 document.getElementById("upload").addEventListener("click", () => {
 
+  closeSidebar();
+
     const uploadSection = document.querySelector(".upload");
 
     if (uploadSection) {
@@ -506,6 +519,8 @@ document.getElementById("upload").addEventListener("click", () => {
 });
 
 document.getElementById("favorite").addEventListener("click", () => {
+
+  closeSidebar();
 
     let html = `
     <section class="favorite-page">
@@ -547,6 +562,8 @@ document.getElementById("favorite").addEventListener("click", () => {
 
 document.getElementById("profile").addEventListener("click", () => {
 
+  closeSidebar();
+
   document.getElementById("content").innerHTML = `
 
   <section class="profile-page">
@@ -554,8 +571,9 @@ document.getElementById("profile").addEventListener("click", () => {
   <div class="profile-card">
 
   <img src="${
-  localStorage.getItem("profilePhoto") || "/profile.png"
-  }" id="profilePreview" class="profile-photo">
+  localStorage.getItem("profilePhoto") || BASE + "profile.png"}" 
+  id="profilePreview" 
+  class="profile-photo">
 
   <h2 id="profileName">
   ${
@@ -627,6 +645,8 @@ document.getElementById("gallery").click();
 
 document.getElementById("setting").addEventListener("click", () => {
 
+  closeSidebar();
+
     document.getElementById("content").innerHTML = `
 
     <section class="setting-page">
@@ -659,6 +679,8 @@ document.getElementById("setting").addEventListener("click", () => {
 
 document.getElementById("about").addEventListener("click", () => {
 
+  closeSidebar();
+  
     document.getElementById("content").innerHTML = `
 
     <section class="about-page">
@@ -750,9 +772,11 @@ function initUpload(){
 
             localStorage.setItem("photos",JSON.stringify(photos));
 
-            loadGallery();
-            loadAlbums();
-            updateDashboard();
+             loadGallery();
+              loadAlbums();
+              loadAlbumSelect();
+              updateDashboard();
+              updateAlbumCount();
 
             alert("Foto berhasil diupload!");
 
@@ -763,67 +787,6 @@ function initUpload(){
     };
 
 }
-uploadBtn.addEventListener("click", () => {
-
-  const file = uploadFile.files[0];
-
-  if (!file) {
-    alert("Silakan pilih foto terlebih dahulu!");
-    return;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = function(e){
-
-    const image = e.target.result;
-
-    const album = document.getElementById("albumSelect").value;
-
-    // Simpan ke Local Storage
-    photos.push({
-      src: image,
-      album: album,
-      name: file.name
-    });
-
-    localStorage.setItem("photos", JSON.stringify(photos));
-
-    // Tambahkan ke Galeri
-    const galleryItem = document.createElement("div");
-
-    galleryItem.className = "gallery-item";
-    galleryItem.dataset.name = file.name;
-    galleryItem.dataset.album = album;
-
-    galleryItem.innerHTML = `
-      <img src="${image}" alt="${file.name}">
-
-      <div class="gallery-action">
-        <button class="fav-btn">🤍</button>
-        <button class="delete-btn">🗑️</button>
-      </div>
-    `;
-
-    galleryGrid.appendChild(galleryItem);
-
-    uploadFile.value = "";
-
-    alert("Foto berhasil diupload!");
-
-    loadAlbums();
-    loadAlbumSelect();
-    updateDashboard();
-    updateAlbumCount();
-    initUpload();
-    document.getElementById("gallery").click();
-
-  };
-
-  // Membaca file
-  reader.readAsDataURL(file);
-
-});
 
 // ==========================
 // Tombol Hero
@@ -831,7 +794,7 @@ uploadBtn.addEventListener("click", () => {
 
 document.addEventListener("click", (e) => {
 
-    if (e.target.id === "heroBtn" || e.target.textContent === "Jelajahi Galeri") {
+    if(e.target.id==="heroBtn") {
 
         const gallery = document.querySelector(".gallery");
 
@@ -1006,7 +969,7 @@ searchInput.addEventListener("keyup", () => {
     // Album
     document.querySelectorAll(".album-card").forEach(card => {
 
-        const nama = (card.dataset.name || "").toLowerCase();
+        const nama = (card.dataset.album || "").toLowerCase();
 
         if (nama.includes(keyword)) {
             card.style.display = "block";
@@ -1034,37 +997,33 @@ searchInput.addEventListener("keyup", () => {
 // Load Local Storage
 // =====================
 
-photos.forEach(photo=>{
+const galleryGrid = document.getElementById("galleryGrid");
 
-    if(!photo.src) return;
+if(galleryGrid){
+    photos.forEach(photo=>{
 
-    const div=document.createElement("div");
+        if(!photo.src) return;
 
-    div.className="gallery-item";
+        const div=document.createElement("div");
 
-    div.dataset.name=photo.name;
+        div.className="gallery-item";
+        div.dataset.name=photo.name;
+        div.dataset.album=photo.album;
 
-    div.dataset.album=photo.album;
+        div.innerHTML=`
+            <img src="${photo.src}" alt="${photo.name}">
+            <div class="gallery-action">
+                <button class="fav-btn">
+                    ${favorites.includes(photo.src) ? "❤️" : "🤍"}
+                </button>
+                <button class="delete-btn">🗑️</button>
+            </div>
+        `;
 
-    div.innerHTML=`
-        <img src="${photo.src}" alt="${photo.name}">
+        galleryGrid.appendChild(div);
 
-        <div class="gallery-action">
-
-            <button class="fav-btn">
-                ${favorites.includes(photo.src)?"❤️":"🤍"}
-            </button>
-
-            <button class="delete-btn">
-                🗑️
-            </button>
-
-        </div>
-    `;
-
-    galleryGrid.appendChild(div);
-
-});
+    });
+}
 // ==========================
 // Buka Album
 // ==========================
@@ -1142,17 +1101,13 @@ if(localStorage.getItem("theme") === "dark"){
 
 function updateDashboard(){
 
-    const totalPhoto =
-        document.querySelectorAll(".gallery-item").length;
+    const totalPhoto = photos.length;
 
-    const totalAlbum =
-        document.querySelectorAll(".album-card").length;
+    const totalAlbum = albums.length;
 
-    const totalFavorite =
-        favorites.length;
+    const totalFavorite = favorites.length;
 
-    const totalUpload =
-        photos.length;
+    const totalUpload = photos.length;
 
     document.getElementById("totalPhoto").textContent = totalPhoto;
 
@@ -1212,7 +1167,7 @@ function loadAlbums(){
 
         const jumlah = photos.filter(photo => photo.album === album).length;
 
-        const cover = photos.find(photo => photo.album === album)?.src || "/foto1.png";
+        const cover = photos.find(photo => photo.album === album)?.src || BASE + "foto1.png";
 
         albumGrid.innerHTML += `
         <div class="album-card"
@@ -1284,8 +1239,27 @@ function showToast(text){
 
     },2500);
 }
+function closeSidebar(){
+
+    if(window.innerWidth <= 768){
+
+        document.querySelector(".sidebar").classList.remove("show");
+
+    }
+
+}
 loadAlbums();
 loadAlbumSelect();
 loadGallery();
 updateDashboard();
 updateAlbumCount();
+initUpload();
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.querySelector(".sidebar");
+
+menuBtn.addEventListener("click",()=>{
+
+    sidebar.classList.toggle("show");
+
+});
