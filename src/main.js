@@ -192,6 +192,30 @@ ${localStorage.getItem("profileName") || "Edamamers"}!
 // ===============================
 // DASHBOARD
 // ===============================
+function updateDashboard() {
+
+    const totalPhoto = document.getElementById("totalPhoto");
+    const totalAlbum = document.getElementById("totalAlbum");
+    const totalFavorite = document.getElementById("totalFavorite");
+    const totalUpload = document.getElementById("totalUpload");
+
+    if (totalPhoto) {
+        totalPhoto.textContent = photos.length;
+    }
+
+    if (totalAlbum) {
+        totalAlbum.textContent = albums.length;
+    }
+
+    if (totalFavorite) {
+        totalFavorite.textContent = favorites.length;
+    }
+
+    if (totalUpload) {
+        totalUpload.textContent = photos.length;
+    }
+
+}
 
 function renderDashboard(){
 
