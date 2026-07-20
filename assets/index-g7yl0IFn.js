@@ -129,7 +129,7 @@ ${localStorage.getItem(`profileName`)||`Edamamers`}!
 
 <div id="toast" class="toast"></div>
 
-`;function s(){document.getElementById(`content`).innerHTML=`
+`;function s(){let e=document.getElementById(`totalPhoto`),i=document.getElementById(`totalAlbum`),a=document.getElementById(`totalFavorite`),o=document.getElementById(`totalUpload`);e&&(e.textContent=t.length),i&&(i.textContent=r.length),a&&(a.textContent=n.length),o&&(o.textContent=t.length)}function c(){document.getElementById(`content`).innerHTML=`
 
 <div class="hero">
 
@@ -294,17 +294,17 @@ Upload
 
 </section>
 
-`}function c(){let e=document.getElementById(`albumGrid`);e&&(e.innerHTML=``,r.forEach(n=>{let r=t.filter(e=>e.album===n).length,i=t.find(e=>e.album===n)?.src||`/album-trio-edamame/no-image.png`;e.innerHTML+=`
+`}function l(){let e=document.getElementById(`albumGrid`);e&&(e.innerHTML=``,r.forEach(n=>{let r=t.filter(e=>e.album===n).length,i=t.find(e=>e.album===n)?.src||`/album-trio-edamame/no-image.png`;e.innerHTML+=`
         <div class="album-card" data-album="${n}">
             <img src="${i}" alt="${n}">
             <h3>${n}</h3>
             <p class="jumlah-foto">${r} Foto</p>
         </div>
-        `}))}function l(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,r.forEach(t=>{e.innerHTML+=`
+        `}))}function u(){let e=document.getElementById(`albumSelect`);e&&(e.innerHTML=``,r.forEach(t=>{e.innerHTML+=`
             <option value="${t}">
                 ${t}
             </option>
-        `}))}function u(){let e=document.getElementById(`addAlbum`);e&&(e.onclick=()=>{let e=document.getElementById(`albumName`),t=e.value.trim();if(t===``){alert(`Masukkan nama album!`);return}if(r.includes(t)){alert(`Album sudah ada!`);return}r.push(t),a(),e.value=``,c(),l(),updateDashboard()})}function d(){document.querySelectorAll(`.album-card`).forEach(e=>{let n=e.dataset.album,r=t.filter(e=>e.album===n).length,i=e.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function f(){let e=document.getElementById(`galleryGrid`);e&&(e.innerHTML=``,t.forEach(t=>{let r=n.includes(t.src);e.innerHTML+=`
+        `}))}function d(){let e=document.getElementById(`addAlbum`);e&&(e.onclick=()=>{let e=document.getElementById(`albumName`),t=e.value.trim();if(t===``){alert(`Masukkan nama album!`);return}if(r.includes(t)){alert(`Album sudah ada!`);return}r.push(t),a(),e.value=``,l(),u(),s()})}function f(){document.querySelectorAll(`.album-card`).forEach(e=>{let n=e.dataset.album,r=t.filter(e=>e.album===n).length,i=e.querySelector(`.jumlah-foto`);i&&(i.textContent=r+` Foto`)})}function p(){let e=document.getElementById(`galleryGrid`);e&&(e.innerHTML=``,t.forEach(t=>{let r=n.includes(t.src);e.innerHTML+=`
 
         <div
             class="gallery-item"
@@ -331,4 +331,4 @@ Upload
 
         </div>
 
-        `}))}function p(){let e=document.getElementById(`uploadBtn`);e&&(e.onclick=()=>{let e=document.getElementById(`uploadFile`).files[0],n=document.getElementById(`albumSelect`).value;if(!e){alert(`Silakan pilih foto!`);return}let r=new FileReader;r.onload=function(r){t.push({src:r.target.result,name:e.name,album:n}),i(),f(),c(),d(),updateDashboard()},r.readAsDataURL(e)})}document.addEventListener(`click`,function(e){if(e.target.classList.contains(`fav-btn`)){let t=e.target.closest(`.gallery-item`).querySelector(`img`).src;n.includes(t)?(n=n.filter(e=>e!==t),e.target.innerHTML=`🤍`):(n.push(t),e.target.innerHTML=`❤️`),o(),updateDashboard()}if(e.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=e.target.closest(`.gallery-item`).querySelector(`img`).src;t=t.filter(e=>e.src!==r),n=n.filter(e=>e!==r),i(),o(),f(),c(),d(),updateDashboard()}}),s(),c(),l(),f(),u(),p(),updateDashboard();
+        `}))}function m(){let e=document.getElementById(`uploadBtn`);e&&(e.onclick=()=>{let e=document.getElementById(`uploadFile`).files[0],n=document.getElementById(`albumSelect`).value;if(!e){alert(`Silakan pilih foto!`);return}let r=new FileReader;r.onload=function(r){t.push({src:r.target.result,name:e.name,album:n}),i(),p(),l(),f(),s()},r.readAsDataURL(e)})}document.addEventListener(`click`,function(e){if(e.target.classList.contains(`fav-btn`)){let t=e.target.closest(`.gallery-item`).querySelector(`img`).src;n.includes(t)?(n=n.filter(e=>e!==t),e.target.innerHTML=`🤍`):(n.push(t),e.target.innerHTML=`❤️`),o(),s()}if(e.target.classList.contains(`delete-btn`)){if(!confirm(`Hapus foto ini?`))return;let r=e.target.closest(`.gallery-item`).querySelector(`img`).src;t=t.filter(e=>e.src!==r),n=n.filter(e=>e!==r),i(),o(),p(),l(),f(),s()}}),c(),l(),u(),p(),d(),m(),s();
